@@ -1,0 +1,20 @@
+{% extends "questionnaire/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="my-card" class="container shadow">
+  <div class="row">
+    <div class="col" >
+      <h2>{{ situation }}</h2>
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <br>
+        <input class="btn btn-primary" type="submit" value="Continuar" />
+      </form>  
+    </div>
+  </div>
+</div>
+
+<script src="{% static "no_return.js" %}"></script>
+{% endblock %}

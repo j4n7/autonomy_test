@@ -1,0 +1,40 @@
+{% extends "questionnaire/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="my-card" class="container justify shadow">
+  <div class="row">
+    <div class="col" >
+      <h2>Tus resultados</h2>
+      <br>
+      <img class="img-fluid" src="data:image/png;base64,{{ figdata_png }}" width="500">
+      <p>
+      <b><u>¡IMPORTANTE! Este test está aún en fase experimental,</u> los resultados deben ser tomados como orientativos y no como algo definitivo.</b> Con tu ayuda conseguiremos validarlo, muchas gracias por completar el test. Si quieres puedes volver a hacer el test dentro de unos meses, cuando la fase de desarrollo haya terminado.
+      </p>
+      <br>
+      <p>
+      El Pentágono de la Autonomía es un gráfico que describe la capacidad de regularse a través de <b>5 criterios de regulación:</b> <i>Prenomía, Anomía, Heteronomía, Socionomía Complaciente y Socionomía Vinculante.</i>
+      </p>
+      <p>
+      Hablamos de <b>regulación autónoma</b> si los resultados del test (color azul) forman un pentágono más o menos regular. En caso contrario, hablamos de <b>déficit de regulación.</b>
+      </p>
+      <p>(Comentario personalizado aún no implemetado.)</p>
+      <p>
+      Para que puedas interpretar mejor los resultados, en la siguiente página se describen cada uno de <b>los criterios de regulación.</b> Puedes ir hacia delante o hacia atrás siempre que quieras.
+      </p>
+      <!--
+      <div class="fb-share-button" data-href="https://tecnicaderejilla.net" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftecnicaderejilla.net%2F&amp;src=sdkpreparse">Compartir</a></div>
+      <br>
+      <br>
+      <div><a href="https://twitter.com/share" class="twitter-share-button" data-text="¿Eres una persona autónoma? Haz gratis el test online de autonomía psicológica." data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+      -->
+      <br>
+      <a href="{% url 'questionnaire:regulation' %}" role="button" class="btn btn-primary">Criterios de regulación</a>
+    </div>
+  </div>
+</div>
+
+<script src="{% static "no_return.js" %}"></script>
+{% endblock %}
+

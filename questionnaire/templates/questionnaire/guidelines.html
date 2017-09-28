@@ -1,0 +1,23 @@
+{% extends "questionnaire/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="my-card" class="container justify shadow">
+  <div class="row">
+    <div class="col" >
+      <h2>Instrucciones</h2>
+      <br>
+      <p>Estás a punto de comenzar el Test de Autonomía Psicológica. Se irán mostrando una serie de situaciones, más o menos habituales. Respira hondo e intenta visualizar con claridad cómo te sentirías en cada una de ellas.</p>
+      <p>Después de cada situación, irán apareciendo una serie de respuestas posibles y tendrás que valorar cuánto de representado/a te sientes en cada una de ellas. Para ello tendrás que utilizar una barra deslizadora.</p>
+      <p>No podrás utilizar el botón de retroceso del navegador mientras realizas el test. Habitualmente se tarda entre 5 y diez minutos.</p>
+      <p>Relájate, disfruta de la experiencia y contesta de la manera más intuitiva y sincera posible.</p>
+      <h3>¡Mucha suerte!</h3>
+      <br>
+      <a href="{% url 'questionnaire:situation' s=current_s i=current_i %}" role="button" class="btn btn-primary">COMENZAR EL TEST</a>
+    </div>
+  </div>
+</div>
+
+<script src="{% static "no_return.js" %}"></script>
+{% endblock %}

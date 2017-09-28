@@ -1,0 +1,26 @@
+{% extends "questionnaire/base.html" %}
+
+{% block content %}
+<div id="my-card" class="container shadow">
+  <div class="row">
+    <div class="col" >
+      <form id="subject-data" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <h2>¿Es la primera vez que realizas este test?</h2>
+        <br>
+        {% for radio in form.first_time %}
+          <label class="custom-control custom-radio">
+          {{ radio.tag }}
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"><b>{{ radio.choice_label }}</b></span>
+          </label>
+        {% endfor %}
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Continuar" />
+      </form>  
+    </div>
+  </div>
+</div>
+{% endblock %}
+

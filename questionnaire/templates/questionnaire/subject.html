@@ -1,0 +1,76 @@
+{% extends "questionnaire/base.html" %}
+
+{% block content %}
+<div id="my-card" class="container shadow">
+  <div class="row">
+    <div class="col" >
+      <form id="subject-data" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        <h2>Cuéntanos más sobre ti</h2>
+        <br>
+        <p>
+        <u>Los datos serán almacenados de forma totalmente anónima y confidencial.</u> Esta infomación nunca podrá ser utilizada para llegar hasta ti y nos ayudará a mejorar el test. Gracias por tu colaboración.
+        <br>
+        <br>
+        <span class="required">* Campos obligatorios</span>
+        </p>
+        <!--
+        <div class="form-group">
+          <label for="id_code">CÓDIGO:</label>
+          {{ form.code }}
+        </div>
+        -->
+        <div class="form-group">
+          <label for="id_age">Edad:<span class="required"> *</span></label>
+          {{ form.age }}
+          <p></p>
+          {{ form.age.errors }}
+        </div>
+        <div class="form-group">
+          <label for="id_sex">Sexo:<span class="required"> *</span></label>
+          {{ form.sex }}
+        </div>
+        <div class="form-group">
+          <label for="id_life_satisfaction">¿Qué grado de satisfacción tienes con tu vida en general? (Del 1 al 10)</label>
+          {{ form.life_satisfaction }}
+        </div>
+        <div class="form-group">
+          <label for="id_civil_status">Estado civil:</label>
+          {{ form.civil_status }}
+        </div>
+        <div class="form-group">
+          <label for="id_last_studies">Últimos estudios:</label>
+          {{ form.last_studies }}
+        </div>
+        <div class="form-group">
+          <label for="id_occupation">Ocupación:</label>
+          {{ form.occupation }}
+        </div>
+        <div class="form-group">
+          <label for="id_home_country">País de nacimiento:</label>
+          {{ form.home_country }}
+        </div>
+        <div class="form-group">
+          <label for="id_home_city">Ciudad de nacimiento:</label>
+          {{ form.home_city }}
+        </div>
+        <div class="form-group">
+          <label for="id_current_country">País de residencia:</label>
+          {{ form.current_country }}
+        </div>
+        <div class="form-group">
+          <label for="id_current_city">Ciudad de residencia:</label>
+          {{ form.current_city }}
+        </div>
+        <div class="form-group">
+          <label for="id_postal_code">Código postal actual:</label>
+          {{ form.postal_code }}
+        </div>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Continuar" />
+      </form>  
+    </div>
+  </div>
+</div>
+{% endblock %}
+

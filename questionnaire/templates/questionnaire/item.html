@@ -1,0 +1,48 @@
+{% extends "questionnaire/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="my-card" class="container shadow">
+<div id="situation-row" class="row ">
+  <div class="col">
+    <p id="situation">{{ situation }}</p>
+  </div>
+</div>
+<div id="item-row" class="row">
+  <div class="col">
+    <p id="item">{{ item }}</p>
+  </div>
+</div>
+<div id="form-row" class="row">
+  <div class="col">
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div id="slidecontainer">
+        {{ form.slider.errors }}
+        {{ form.slider }}
+        <br>
+        <p><b>Puntuación: <span id="value"></span></b></p>
+      </div>
+      <br>
+      <p id="text" style="text-align: left">0 = No me representa en absoluto<span style="float: right">Me representa totalmente = 100</span></p>
+      <br>
+      <input class="btn btn-primary" type="submit" value="Continuar" />
+    </form>
+  </div>
+</div>
+</div>
+
+<script>
+  var slider = document.getElementById("slider");
+  var output = document.getElementById("value");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }
+</script>
+
+<script src="{% static "no_return.js" %}"></script>
+{% endblock %}
+

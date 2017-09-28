@@ -1,0 +1,39 @@
+{% extends "questionnaire/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div id="my-card" class="container justify shadow">
+  <div class="row">
+    <div class="col" >
+      <h2>Crtierios de regulación</h2>
+      <br>
+      <p>
+      <b>PRENOMÍA: <i>es la regulación según las necesidades.</i></b> Una puntuación alta indica una buena predisposición a cuidarte y dejarte cuidar; indica también una capacidad de saber esperar pacientemente cuando es necesario, a mantenerte a la expectativa de los acontecimientos externos cuando incidir en ellos es complicado. Una puntuación baja puede indicar déficits a este nivel, como son una tendencia excesiva a la pasividad, a la dejadez y al descuido personal, así como dificultades de motivación o iniciativa. Una baja puntuación también puede indicar una incapacidad para dejarse llevar, para frenar el ritmo y relajarse.
+      </p>
+      <p>
+      <b>ANOMÍA: <i>es la regulación según los deseos.</i></b> Una puntuación alta indica capacidad de vivir al presente, de saber lo que uno quiere, de disfrutar de la experiencia, de actuar con espontaneidad, todo esto acorde con un entorno social y una responsabilidad personal. Una puntuación baja puede indicar dificultades para conectar con los propios deseos, con lo que a uno le gusta y quiere. También puede indicar un déficit en el control de los impulsos y la gestión de las frustraciones, así como una tendencia a la búsqueda de la satisfacción inmediata, en perjuicio de la toma de responsabilidades. 
+      </p>
+      <p>
+      <b>HETERONOMÍA: <i>es la regulación según las normas sociales abstractas: lo que está bien y mal, el deber cívico, las buenas formas.</i></b> Una puntuación alta indica tu predisposición a respetar las normas sociales, a actuar de forma cívica, formal, y hacerlo de forma flexible. Una puntuación baja podría indicar déficit de regulación a este nivel, con rigidez y preocupación excesiva hacia las normas sociales, con presencia de perfeccionismo, miedo al juicio y/o dudas obsesivas. Una baja puntuación también podría indicar laxitud e inconsciencia ante dichas normas sociales.
+      </p>
+      <p>
+      <b>SOCIONOMÍA COMPLACIENTE: <i>es la regulación según las relaciones interpersonales.</i></b> Una alta puntuación indica tu predisposición a actuar de forma amable y complaciente con las personas de tu entorno, y a mantener una imagen agradable y positiva de ti mismo/a. Una baja puntuación puede implicar un exceso de complacencia, dificultad para mostrar sentimientos y emociones negativas, opiniones discrepantes, o actuar de forma contraria a lo que tus amigos o compañeros esperan de ti. Una baja puntuación también podría indicar una incapacidad o desinterés para actuar de forma complaciente.
+      </p>
+      <p>
+      <b>SOCIONOMÍA VINCULANTE: <i>es la regulación preferente en las relaciones afectivas íntimas.</i></b> Una puntuación alta indica tu predisposición a empatizar, atender, ayudar y cuidar las personas de tu entorno más próximo. Una baja puntuación puede indicar o bien una entrega excesiva a la familia o la pareja, en perjuicio u olvido de uno mismo, o bien lo contrario, una incapacidad para descentrarse de uno mismo e implicarse en una relación de afecto.  
+      </p>
+      <!--
+      <br>
+      <div class="fb-share-button" data-href="https://tecnicaderejilla.net" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftecnicaderejilla.net%2F&amp;src=sdkpreparse">Compartir</a></div>
+      <br>
+      <br>
+      <div><a href="https://twitter.com/share" class="twitter-share-button" data-text="¿Eres una persona autónoma? Haz gratis el test online de autonomía psicológica." data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+      -->
+      <br>
+      <a href="{% url 'questionnaire:about_us' %}" role="button" class="btn btn-primary">Conoce más</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
