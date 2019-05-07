@@ -14,14 +14,14 @@ from datetime import datetime
 from io import BytesIO
 
 
-n_situ = 12
+situ_order = [0, 1, 2, 3, 4, 5]
+item_order = [[0, 1, 2, 3, 4], [0, 1, 2], [0, 1, 2, 3],
+              [0, 1, 2, 3], [0, 1, 2, 3, 4], [0, 1, 2, 3]]
 
 
 def request_session(name, request):
     if name in request.session:
         return request.session[name]
-
-# Create your views here.
 
 
 def index_view(request):
@@ -63,14 +63,16 @@ def subject_view(request):
 
 
 def guidelines_view(request):
-    situ_order = list(range(n_situ))
-    item_order = list(range(5))
     shuffle(situ_order)
-    shuffle(item_order)
+    for i, order in enumerate(item_order):
+        shuffle(order)
     current_s = situ_order[0]
-    current_i = item_order[0]
+    print(current_s)
+    print(situ_order)
+    print(item_order)
+    current_i = item_order[current_s][0]
     del situ_order[0]
-    del item_order[0]
+    del item_order[current_s][0]
     request.session['situ_order'] = situ_order
     request.session['item_order'] = item_order
 
@@ -119,30 +121,28 @@ def item_view(request, s, i):
             request.session['time'] = str(datetime.now())
 
             if situ_order:
-                if item_order:
+                if item_order[s]:
                     '''Only item changes'''
                     current_s = s
-                    current_i = item_order[0]
-                    del item_order[0]
+                    current_i = item_order[current_s][0]
+                    del item_order[current_s][0]
                     request.session['item_order'] = item_order
                     return redirect('questionnaire:item', current_s, current_i)
                 else:
                     '''Both situation and item change'''
-                    item_order = list(range(5))
-                    shuffle(item_order)
                     current_s = situ_order[0]
-                    current_i = item_order[0]
+                    current_i = item_order[current_s][0]
                     del situ_order[0]
-                    del item_order[0]
+                    del item_order[current_s][0]
                     request.session['situ_order'] = situ_order
                     request.session['item_order'] = item_order
                     return redirect('questionnaire:situation', current_s, current_i)
             else:
-                if item_order:
+                if item_order[s]:
                     '''Only item changes'''
                     current_s = s
-                    current_i = item_order[0]
-                    del item_order[0]
+                    current_i = item_order[current_s][0]
+                    del item_order[current_s][0]
                     request.session['item_order'] = item_order
                     return redirect('questionnaire:item', current_s, current_i)
                 else:
@@ -161,7 +161,7 @@ def results_view(request):
     subject_id = request_session('subject_id', request)
     subject = Subject.objects.get(id=subject_id)
 
-    max_score = 100 * n_situ
+    max_score = 100 * len(situ_order)
 
     def scale_score(score):
         return (score * 100) / max_score
@@ -190,12 +190,11 @@ def results_view(request):
     axes.fill(theta, scores, facecolor='b', alpha=0.25)
     axes.set_varlabels(stages)
 
-    figfile = BytesIO()
-    plt.savefig(figfile, format='png')
-    figfile.seek(0)  # rewind to beginning of file
-    figdata_png = figfile.getvalue()  # extract string (stream of bytes)
-    figdata_png = base64.b64encode(figdata_png)
-    plt.close()  # this might help to free memory
+    io_file = BytesIO()
+    plt.savefig(io_file, format='png')
+    b64_file = base64.b64encode(io_file.getvalue()).decode('utf-8')
+    plt.close()
+    io_file.close()
 
     return render(request, 'questionnaire/results.html', {
         'pre_score': pre_score,
@@ -203,7 +202,7 @@ def results_view(request):
         'het_score': het_score,
         'soc_score': soc_score,
         'sov_score': sov_score,
-        'figdata_png': figdata_png})
+        'b64_file': b64_file})
 
 
 def regulation_view(request):
